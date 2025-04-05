@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RUTBA - Reviving Union for Transcendent and Benevolent Activities</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #006064;
+            --secondary: #4dd0e1;
+            --accent: #ff9800;
+            --light: #e0f7fa;
+            --dark: #003d40;
+            --white: #ffffff;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(to right, var(--primary), var(--dark));
+            color: var(--white);
+            padding: 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            padding: 4rem 0;
+        }
+
+        .header-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: repeating-linear-gradient(
+                45deg,
+                rgba(255, 255, 255, 0.05),
+                rgba(255, 255, 255, 0.05) 10px,
+                transparent 10px,
+                transparent 20px
+            );
+            z-index: 1;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .nav {
+            background-color: var(--dark);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav li {
+            margin: 0 1rem;
+        }
+
+        .nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        .nav a:hover {
+            color: var(--accent);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background-color: var(--accent);
+        }
+
+        .intro {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .intro-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .intro-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .intro-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .mission-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .mission-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 2rem;
+            flex: 1;
+            min-width: 250px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .mission-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .mission-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .mission-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .activities {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .activity-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .activity-item {
+            background-color: var(--light);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            transition: transform 0.3s;
+        }
+
+        .activity-item:hover {
+            transform: translateX(5px);
+        }
+
+        .activity-item h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-members {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .member-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            width: 250px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .member-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .member-photo {
+            height: 200px;
+            background-color: #ddd;
+            position: relative;
+        }
+
+        .member-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .member-name {
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+            font-size: 1.2rem;
+        }
+
+        .member-role {
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            height: 200px;
+            background-color: #ddd;
+            position: relative;
+        }
+
+        .contact-info {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-form {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .contact-details {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--light);
+            border-radius: 4px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            font-size: 1rem;
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background-color: var(--accent);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #e68a00;
+        }
+
+        .contact-details h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--light);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .contact-icon {
+            margin-right: 1rem;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .social-link:hover {
+            background-color: var(--accent);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .intro, .mission-cards, .activity-list, .team-members, .gallery, .contact-info {
+            animation: fadeIn 1s ease forwards;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 1.8rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+            
+            .nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav li {
+                margin: 0.5rem 0;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-pattern"></div>
+        <div class="header-content">
+            <h1 class="logo">RUTBA</h1>
+            <p class="tagline">Reviving Union for Transcendent and Benevolent Activities</p>
+            <p class="subtitle">Fathima Zahra Islamic Women's College</p>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#mission">Our Mission</a></li>
+            <li><a href="#activities">Activities</a></li>
+            <li><a href="#team">Our Team</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="about" class="section">
+            <h2 class="section-title">RUTBA</h2>
+            <div class="intro">
+                <div class="intro-text">
+                    <p>The Reviving Union for Transcendent and Benevolent Activities of Fathima Zahra Islamic Women's College under the Gazva Union. We are a vibrant community of students dedicated to personal growth, academic excellence, and service to society.</p>
+                    <p>Founded with the vision of empowering young women to become leaders of tomorrow, RUTBA serves as a platform for students to develop their talents, expand their horizons, and make meaningful contributions to the world around them.</p>
+                    <p>Our union embraces the values of compassion, knowledge, integrity, and service, guiding our members to excel not only in academic pursuits but also in character development and community engagement.</p>
+                </div>
+                <div class="intro-image">
+                    <img src="rutbalogo.png" alt="rutba logo">
+                </div>
+            </div>
+        </section>
+
+        <section id="mission" class="section">
+            <h2 class="section-title">Our Mission</h2>
+            <div class="mission-cards">
+                <div class="mission-card">
+                    <div class="mission-icon">🌱</div>
+                    <h3>Personal Growth</h3>
+                    <p>Fostering intellectual, spiritual, and personal development of our members through educational programs and character-building activities.</p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">🤝</div>
+                    <h3>Community Service</h3>
+                    <p>Organizing initiatives that address social issues and contribute positively to the welfare of our community and society at large.</p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">🎯</div>
+                    <h3>Leadership</h3>
+                    <p>Developing leadership skills and qualities that enable our members to become agents of positive change in their communities.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="activities" class="section">
+            <h2 class="section-title">Our Activities</h2>
+            <div class="activities">
+                <p>RUTBA organizes a diverse range of activities throughout the academic year, providing opportunities for learning, service, and fellowship.</p>
+                
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <h3>Educational Workshops</h3>
+                        <p>Interactive sessions on academic subjects, career guidance, and life skills to enhance personal and professional development.</p>
+                    </div>
+                    <div class="activity-item">
+                        <h3>Community Outreach</h3>
+                        <p>Initiatives focused on serving the underprivileged, environmental conservation, and addressing social issues.</p>
+                    </div>
+                    <div class="activity-item">
+                        <h3>Cultural Programs</h3>
+                        <p>Events celebrating diverse cultural heritages, fostering appreciation for art, literature, and traditions.</p>
+                    </div>
+                    <div class="activity-item">
+                        <h3>Leadership Training</h3>
+                        <p>Programs designed to nurture leadership qualities, communication skills, and teamwork among members.</p>
+                    </div>
+                    <div class="activity-item">
+                        <h3>Spiritual Development</h3>
+                        <p>Sessions focused on spiritual growth, ethics, and values that guide personal conduct and decision-making.</p>
+                    </div>
+                    <div class="activity-item">
+                        <h3>Health & Wellness</h3>
+                        <p>Activities promoting physical health, mental wellbeing, and healthy lifestyle choices.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="team" class="section">
+            <h2 class="section-title">Our Team</h2>
+            <div class="team-members">
+                <div class="member-card">
+                    <div class="member-photo"></div>
+                    <div class="member-info">
+                        <h3 class="member-name">Alisha Abid</h3>
+                        <p class="member-role">President</p>
+                        <p>Leading with vision and dedication to elevate RUTBA to new heights.</p>
+                    </div>
+                </div>
+                <div class="member-card">
+                    <div class="member-photo"></div>
+                    <div class="member-info">
+                        <h3 class="member-name">Fathima Jumana K</h3>
+                        <p class="member-role">Secretary</p>
+                        <p>Managing communications and documentation with precision and care.</p>
+                    </div>
+                </div>
+                <div class="member-card">
+                    <div class="member-photo"></div>
+                    <div class="member-info">
+                        <h3 class="member-name">Ayisha Raja</h3>
+                        <p class="member-role">Treasurer</p>
+                        <p>Handling financial affairs with accountability and transparency.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="section">
+            <h2 class="section-title">Gallery</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="">
+                </div>
+                <div class="gallery-item"></div>
+                <div class="gallery-item"></div>
+                <div class="gallery-item"></div>
+                <div class="gallery-item"></div>
+                <div class="gallery-item"></div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-info">
+                <div class="contact-form">
+                    <h3>Send us a message</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" placeholder="Your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control" placeholder="Your message"></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-details">
+                    <h3>Get in touch</h3>
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <span>Fathima Zahra Islamic Women's College, Campus Address</span>
+                    </div>
+                        
+                    <div class="contact-item">
+                        <span class="contact-icon">✉️</span>
+                        <span>rutbaofficial31@gmail.com</span>
+                    </div>
+                   
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-logo">RUTBA</div>
+        <p>Reviving Union for Transcendent and Benevolent Activities</p>
+        <div class="social-links">
+            <a href="#" class="social-link">FB</a>
+            <a href="https://www.instagram.com/_rutbaofficial_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="social-link">IG</a>
+            <a href="#" class="social-link">TW</a>
+            <a href="#" class="social-link">YT</a>
+        </div>
+        <p class="copyright">© 2025 RUTBA - Fathima Zahra Islamic Women's College. All rights reserved.</p>
+    </footer>
+</body>
+</html>
